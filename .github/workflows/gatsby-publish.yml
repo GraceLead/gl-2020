@@ -20,6 +20,8 @@ jobs:
         cmd: build
       env:
         NODE_ENV: production
+        GHOST_API_URL: ${{ secrets.ghost_api_url }}
+        GHOST_CONTENT_API_KEY: ${{ secrets.ghost_content_api_key }}
 
     - name: Set CNAME
       run: |
