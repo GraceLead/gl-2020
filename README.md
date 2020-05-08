@@ -1,4 +1,4 @@
-# Gatsby Starter Ghost
+# Grace Lead's Website built on Gatsby and Ghost
 
 A starter template to build lightning fast websites with [Ghost](https://ghost.org) & [Gatsby](https://gatsbyjs.org)
 
