@@ -30,6 +30,9 @@ try {
 *
 */
 module.exports = {
+    // pathPrefix for deploying to a path on GitHub Pages
+    // See https://www.gatsbyjs.org/docs/how-gatsby-works-with-github-pages/
+    pathPrefix: `/gl-2020`,
     siteMetadata: {
         siteUrl: config.siteUrl,
     },
