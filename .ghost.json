@@ -1,10 +1,10 @@
 {
   "development": {
     "apiUrl": "https://ghost.gracelead.org",
-    "contentApiKey": ${{ secrets.ghost_content_api_key }}
+    "contentApiKey": "${{ secrets.ghost_content_api_key }}"
   },
   "production": {
     "apiUrl": "https://ghost.gracelead.org",
-    "contentApiKey": ${{ secrets.ghost_content_api_key }}
+    "contentApiKey": "${{ secrets.ghost_content_api_key }}"
   }
 }
