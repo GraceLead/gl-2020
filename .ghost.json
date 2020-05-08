@@ -1,10 +1,10 @@
 {
   "development": {
     "apiUrl": "https://ghost.gracelead.org",
-    "contentApiKey": "3031ae8dc4fdd7a0dea31aee66"
+    "contentApiKey": ${{ secrets.ghost_content_api_key }}
   },
   "production": {
     "apiUrl": "https://ghost.gracelead.org",
-    "contentApiKey": "3031ae8dc4fdd7a0dea31aee66"
+    "contentApiKey": ${{ secrets.ghost_content_api_key }}
   }
 }
