@@ -1,10 +1,10 @@
 {
   "development": {
-    "apiUrl": "https://gatsby.ghost.io",
-    "contentApiKey": "9cc5c67c358edfdd81455149d0"
+    "apiUrl": "https://ghost.gracelead.org",
+    "contentApiKey": "3031ae8dc4fdd7a0dea31aee66"
   },
   "production": {
-    "apiUrl": "https://gatsby.ghost.io",
-    "contentApiKey": "9cc5c67c358edfdd81455149d0"
+    "apiUrl": "https://ghost.gracelead.org",
+    "contentApiKey": "3031ae8dc4fdd7a0dea31aee66"
   }
 }
