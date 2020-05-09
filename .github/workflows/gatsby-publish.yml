@@ -28,6 +28,9 @@ jobs:
  #     - run: npm run format
  #     - run: npm run test
       - run: npm run build
+        env:
+          GHOST_API_URL: ${{ secrets.ghost_api_url }}
+          GHOST_CONTENT_API_KEY: ${{ secrets.ghost_content_api_key }}
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
