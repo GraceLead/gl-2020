@@ -25,18 +25,18 @@ jobs:
             ${{ runner.os }}-node-
 
       - run: npm ci
- #     - run: npm run format
- #     - run: npm run test
+ #    - run: npm run format
+ #    - run: npm run test
       - run: npm run build
         env:
           GHOST_API_URL: ${{ secrets.ghost_api_url }}
           GHOST_CONTENT_API_KEY: ${{ secrets.ghost_content_api_key }}
           
       - name: Set CNAME
-      run: |
-        sudo tee -a public/CNAME > /dev/null << EOF
-        gracelead.org
-        EOF
+          run: |
+            sudo tee -a public/CNAME > /dev/null << EOF
+            gracelead.org
+            EOF
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
