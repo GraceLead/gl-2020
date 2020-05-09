@@ -1,36 +1,73 @@
-name: Publish
-on: [push]
+name: github pages
+
+on:
+  push:
+    branches:
+      - master
+
 jobs:
-  build:
-    name: Publish
-    runs-on: ubuntu-latest
+  deploy:
+    runs-on: ubuntu-18.04
     steps:
+      - uses: actions/checkout@v2
 
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
 
-    - name: Install NPM Packages
-      uses: borales/actions-yarn@v2.0.0
-      with:
-        cmd: install --production
+      - name: Cache dependencies
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-    - name: Static Build
-      uses: borales/actions-yarn@v2.0.0
-      with:
-        cmd: build
-      env:
-        NODE_ENV: production
-        GHOST_API_URL: ${{ secrets.ghost_api_url }}
-        GHOST_CONTENT_API_KEY: ${{ secrets.ghost_content_api_key }}
+      - run: npm ci
+      - run: npm run format
+      - run: npm run test
+      - run: npm run build
 
-    - name: Set CNAME
-      run: |
-        sudo tee -a public/CNAME > /dev/null << EOF
-        gracelead.org
-        EOF
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v2
-      env:
-        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        PUBLISH_BRANCH: gh-pages
-        PUBLISH_DIR: ./public
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          
+#name: Publish
+#on: [push]
+#jobs:
+ # build:
+#    name: Publish
+#    runs-on: ubuntu-latest
+ #   steps:
+
+#    - name: Checkout
+ #     uses: actions/checkout@v2
+
+  #  - name: Install NPM Packages
+   #   uses: borales/actions-yarn@v2.0.0
+    #  with:
+     #   cmd: install --production
+
+#    - name: Static Build
+#      uses: borales/actions-yarn@v2.0.0
+#      with:
+#        cmd: build
+ #     env:
+  #      NODE_ENV: production
+  #      GHOST_API_URL: ${{ secrets.ghost_api_url }}
+   #     GHOST_CONTENT_API_KEY: ${{ secrets.ghost_content_api_key }}
+
+   # - name: Set CNAME
+   #   run: |
+   #     sudo tee -a public/CNAME > /dev/null << EOF
+   #     gracelead.org
+   #     EOF
+ #   - name: Deploy
+ #     uses: peaceiris/actions-gh-pages@v2
+ #     env:
+ #       ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+ #       PUBLISH_BRANCH: gh-pages
+ #       PUBLISH_DIR: ./public
